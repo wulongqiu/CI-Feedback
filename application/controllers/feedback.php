@@ -12,15 +12,18 @@ class Feedback extends Feedback_Controller {
 		$rules = $this->feedback_m->rules;
 		$this->form_validation->set_rules($rules);
 
+
 		//处理表单的提交
 		if ($this->form_validation->run() == TRUE) {
 			$data = $this->feedback_m->array_from_post(array(
 				'name',
 				'title',
-				'content'
+				'content',
+				'pubdate',
+				'ip',
 			));
 			$this->feedback_m->save($data, $id);
-			redirect('feedback');
+			redirect('');
 		}
 
 		$this->load->view('feedback', $this->data);

@@ -4,6 +4,7 @@ class MY_Model extends CI_Model {
 	protected $_table_name = '';
 	protected $_primary_key = 'id';
 	public $rules = array();
+	protected $_timestamps = FALSE;
 
 	function __construct()	{
 		parent::__construct();
@@ -18,12 +19,23 @@ class MY_Model extends CI_Model {
 	}
 
 	public function save($data, $id = NULL){
-		// Insert
+
+		//获取时间
+		if ($this->_timestamps == TRUE) {
+			$now = date('Y-m-d H:i:s');
+//			$id || $data['created'] = $now;
+			$data['pubdate'] = $now;
+		}
+		//获取本机IP
+		$data['ip'] = $this->input->ip_address();
+
+		// 插入数据
 		if ($id === NULL) {
 			!isset($data[$this->_primary_key]) || $data[$this->_primary_key] = NULL;
 			$this->db->set($data);
 			$this->db->insert($this->_table_name);
 			$id = $this->db->insert_id();
+
 		}
 		return $id;
 	}

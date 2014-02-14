@@ -19,6 +19,13 @@ class Migration_Create_feedback extends CI_Migration {
 				'type' => 'VARCHAR',
 				'constraint' => '100',
 			),
+			'pubdate' => array(
+				'type' => 'DATETIME',
+			),
+			'ip' => array(
+				'type' => 'VARCHAR',
+				'constraint' => '50',
+			),
 
 			'content' => array(
 				'type' => 'TEXT',
