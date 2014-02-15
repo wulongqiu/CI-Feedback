@@ -7,7 +7,15 @@ class Feedback extends Feedback_Controller {
 
 	}
 
-	public function index($id = NULL) {
+	public function index() {
+
+		$this->data['feedbacks'] = $this->feedback_m->get();
+		$this->load->view('feedback', $this->data);
+	}
+
+	public function pub($id = NULL) {
+
+		$this->data['feedback'] = $this->feedback_m->get();
 
 		$rules = $this->feedback_m->rules;
 		$this->form_validation->set_rules($rules);

@@ -3,6 +3,8 @@ class MY_Model extends CI_Model {
 
 	protected $_table_name = '';
 	protected $_primary_key = 'id';
+	protected $_primary_filter = "intval";
+	protected $_order_by = '';
 	public $rules = array();
 	protected $_timestamps = FALSE;
 
@@ -16,6 +18,27 @@ class MY_Model extends CI_Model {
 			$data[$field] = $this->input->post($field);
 		}
 		return $data;
+	}
+
+	public function get($id = NULL, $single = FALSE){
+
+		if ($id != NULL) {
+			$filter = $this->_primary_filter;
+			$id = $filter($id);
+			$this->db->where($this->_primary_key, $id);
+			$method = 'row';
+		}
+		else {
+			$method = 'result';
+		}
+
+
+		return $this->db->get($this->_table_name)->$method();
+	}
+
+	public function get_by($where, $single = FALSE){
+		$this->db->where($where);
+		return $this->get(NULL, $single);
 	}
 
 	public function save($data, $id = NULL){
