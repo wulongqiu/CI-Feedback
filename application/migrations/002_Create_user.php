@@ -7,8 +7,8 @@ class Migration_create_user extends CI_Migration {
 			'id' => array(
 				'type' => 'INT',
 				'constraint' => '11',
-				'unsigned' => 'TRUE',
-				'auto_increment' => 'TRUE',
+				'unsigned' => TRUE,
+				'auto_increment' => TRUE,
 			),
 			'email' => array(
 				'type' => 'VARCHAR',
