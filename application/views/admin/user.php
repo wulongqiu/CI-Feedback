@@ -1,38 +1,5 @@
-<style type="text/css">
-	.m {
-		width: 700px;
-		margin: 0 auto;
-	}
-	.dashboard-nav {
-		width: 700px;
-		float: left;
-	}
-	.dashboard-nav-title {
-		width: 100px;
-		float: left;
-	}
-	.dashboard-nav-nav {
-		width: 500px;
-		float: left;
-	}
-	.dashboard-nav-logout {
-		width: 100px;
-		float: left;
-	}
-</style>
 
-<div class="m">
-	<div class="dashboard-nav">
-		<div class="dashboard-nav-title">后台管理</div>
-		<div class="dashboard-nav-nav">
-			<?php echo anchor('admin/user', '用户管理'); ?>
-			<?php echo anchor('admin/feedback', '反馈管理'); ?>
-		</div>
-		<div class="dashboard-nav-logout">
-			 <?php echo anchor('admin/user/logout', '退出登陆'); ?>
-		</div>
-	</div>
-<hr/>
+	<p><?php echo anchor('admin/user/edit', '添加新用户');?></p>
 	<p>
 		<table width="100%">
 			<tr>

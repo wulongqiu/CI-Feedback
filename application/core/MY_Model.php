@@ -7,8 +7,9 @@ class MY_Model extends CI_Model {
 	protected $_order_by = '';
 	public $rules = array();
 	protected $_timestamps = FALSE;
+	protected $_ip = FALSE;
 
-	function __construct()	{
+	function __construct() {
 		parent::__construct();
 	}
 
@@ -50,7 +51,9 @@ class MY_Model extends CI_Model {
 			$data['pubdate'] = $now;
 		}
 		//获取本机IP
-		$data['ip'] = $this->input->ip_address();
+		if ($this->_ip ==TRUE) {
+			$data['ip'] = $this->input->ip_address();
+		}
 
 		// 插入数据
 		if ($id === NULL) {
@@ -58,9 +61,26 @@ class MY_Model extends CI_Model {
 			$this->db->set($data);
 			$this->db->insert($this->_table_name);
 			$id = $this->db->insert_id();
-
+		}
+		else {
+			$filter = $this->_primary_filter;
+			$id = $filter($id);
+			$this->db->set($data);
+			$this->db->where($this->_primary_key, $id);
+			$this->db->update($this->_table_name);
 		}
 		return $id;
 	}
 
+	public function delete($id){
+		$filter = $this->_primary_filter;
+		$id = $filter($id);
+
+		if (!$id) {
+			return FALSE;
+		}
+		$this->db->where($this->_primary_key, $id);
+		$this->db->limit(1);
+		$this->db->delete($this->_table_name);
+	}
 }

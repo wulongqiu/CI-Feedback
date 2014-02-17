@@ -9,15 +9,44 @@ class User extends Admin_Controller {
 	public function index()
 	{
 		$this->data['users'] = $this->user_m->get();
-		$this->load->view('admin/user', $this->data);
+		$this->data['subview'] = 'admin/user';
+		$this->load->view('admin/_layout_main', $this->data);
 	}
 
-	public function edit() {
-		echo "这里是用户编辑页面";
+	public function edit($id = NULL) {
+
+		if ($id) {
+			$this->data['user'] = $this->user_m->get($id);
+			count($this->data['user']) || $this->data['error'][] = "没有用户！";
+		}
+		else {
+			$this->data['user'] = $this->user_m->get_new();
+		}
+
+		$rules = $this->user_m->rules_admin;
+		$id || $rules['password']['rules'] .= '|required';
+		$this->form_validation->set_rules($rules);
+
+		if ($this->form_validation->run() == TRUE) {
+			$data = $this->user_m->array_from_post(array(
+				'name',
+				'email',
+				'password',
+			));
+			$data['password'] = $this->user_m->hash($data['password']);
+			$this->user_m->save($data, $id);
+			redirect('admin/user');
+		}
+
+		$this->data['subview'] = 'admin/user-edit';
+		$this->load->view('admin/_layout_main', $this->data);
+
 	}
 
-	public function delete() {
-		echo "这里是用户删除页面";
+	public function delete ($id)
+	{
+		$this->user_m->delete($id);
+		redirect('admin/user');
 	}
 
 	public function login()
