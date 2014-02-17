@@ -1,4 +1,3 @@
-
 	<p><?php echo anchor('admin/user/edit', '添加新用户');?></p>
 	<p>
 		<table width="100%">

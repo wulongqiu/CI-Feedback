@@ -24,6 +24,15 @@ class Feedback_m extends MY_Model {
 
 	);
 
+//	   添加一个新的反馈
+	public function get_new() {
+		$feedback = new stdClass();
+//		 使用id是为了在增加反馈时自动隐藏日期和IP选项
+		$feedback->id = '';
+		$feedback->name = '';
+		$feedback->title = '';
+		$feedback->content = '';
 
-
+		return $feedback;
+	}
 }

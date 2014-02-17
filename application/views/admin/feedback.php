@@ -1,8 +1,9 @@
+<p><?php echo anchor('admin/feedback/edit', '添加新反馈');?></p>
 <?php if(count($feedbacks)): foreach($feedbacks as $feedback): ?>
 	<h3><?php echo $feedback->title; ?></h3>
 	<p>信息ID：<?php echo $feedback->id;?>
-		<?php echo anchor('admin/feedback/edit' . $feedback->id, '编辑反馈');?>
-		<?php echo anchor('admin/feedback/delete' . $feedback->id, '删除反馈');?>
+		<?php echo anchor('admin/feedback/edit/' . $feedback->id, '编辑反馈');?>
+		<?php echo anchor('admin/feedback/delete/' . $feedback->id, '删除反馈');?>
 	</p>
 	<p class="info">
 		发布人：<?php echo $feedback->name; ?>
