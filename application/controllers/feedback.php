@@ -37,4 +37,5 @@ class Feedback extends Feedback_Controller {
 		$this->load->view('feedback', $this->data);
 	}
 
+
 }
