@@ -72,6 +72,7 @@ class User extends Admin_Controller {
 
 	public function logout()
 	{
-		echo "退出成功";
+		$this->user_m->logout();
+		redirect('admin/user/login');
 	}
 }
