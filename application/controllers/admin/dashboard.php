@@ -6,7 +6,6 @@ class Dashboard extends Admin_Controller {
 	}
 
 	public function index() {
-
 		$this->load->view('admin/dashboard', $this->data);
 	}
 

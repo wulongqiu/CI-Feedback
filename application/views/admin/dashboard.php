@@ -34,26 +34,7 @@
 	</div>
 <hr/>
 	<p>
-		<table width="100%">
-			<tr>
-				<td width="70%">登陆邮箱</td>
-				<td width="30%">相关操作</td>
-			</tr>
-		<?php if(count($users)): foreach($users as $user): ?>
-			<tr>
-				<td><?php echo anchor('admin/user/edit' . $user->id, $user->email);?></td>
-				<td>
-					<?php echo anchor('admin/user/edit' . $user->id); ?>
-					&nbsp;&nbsp;
-					<?php echo anchor('admin/user/delete' . $user->id); ?>
-				</td>
-			</tr>
-		<?php endforeach;?>
-		<?php else: ?>
-			<tr>
-				<td colspan="2">抱歉，没有找到用户！</td>
-			</tr>
-		<?php endif; ?>
-		</table>
+		一共有<?php echo $this->db->count_all('user');?>个用户<br>
+		<?php echo $this->db->count_all('feedback');?>个反馈信息
 	</p>
 </div>
