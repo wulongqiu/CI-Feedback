@@ -51,8 +51,8 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
-
-$autoload['libraries'] = array('database');
+// 加载CI系统类库
+$autoload['libraries'] = array('database', 'session');
 
 
 /*
@@ -63,7 +63,7 @@ $autoload['libraries'] = array('database');
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-
+// 加载CI系统辅助函数
 $autoload['helper'] = array('url','html');
 
 
@@ -79,7 +79,7 @@ $autoload['helper'] = array('url','html');
 | config files.  Otherwise, leave it blank.
 |
 */
-
+// 加载自定义配置文件
 $autoload['config'] = array('cms_config');
 
 
