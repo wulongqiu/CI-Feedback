@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+// 迁移类，文件名和类名
 class Migration_Create_feedback extends CI_Migration {
 
 	public function up()
@@ -33,7 +34,9 @@ class Migration_Create_feedback extends CI_Migration {
 			),
 		));
 
+		// 指定主键
 		$this->dbforge->add_key('id');
+		// 指定要创建的表名
 		$this->dbforge->create_table('feedback');
 	}
 

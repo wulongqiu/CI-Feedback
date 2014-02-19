@@ -1,4 +1,6 @@
 <?php
+// index.php，程序的唯一入口，可以放在程序的根目录之外，以加强网站的安全性。
+// 添加时区
 date_default_timezone_set('Asia/Hong_Kong');
 /*
  *---------------------------------------------------------------
@@ -18,8 +20,10 @@ date_default_timezone_set('Asia/Hong_Kong');
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-//$root = dirname(__FILE__);
-//var_dump($root);
+/*用来测获取项目的真实路径，路径需要正确，不然程序不能正常运行。
+$root = dirname(__FILE__);
+var_dump($root);*/
+// 开发配置和生成配置，数据库连接
 switch (dirname(__FILE__)) {
 	case 'D:\wamp\www\ci_feedback\web':
 		define('ENVIRONMENT', 'development');
@@ -67,6 +71,7 @@ if (defined('ENVIRONMENT'))
  * as this file.
  *
  */
+// 核心程序的目录，index.php放在了根目录之外，这里使用相对路径
 	$system_path = '../system';
 
 /*
@@ -83,6 +88,7 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
+// 开发程序的文件夹，保持默认，修改路径即可
 	$application_folder = '../application';
 
 /*

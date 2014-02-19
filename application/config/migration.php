@@ -8,6 +8,7 @@
 | whenever you intend to do a schema migration.
 |
 */
+// 开启迁移辅助，管理数据库
 $config['migration_enabled'] = TRUE;
 
 
@@ -21,6 +22,7 @@ $config['migration_enabled'] = TRUE;
 | be upgraded / downgraded to.
 |
 */
+// 迁移版本
 $config['migration_version'] = 2;
 
 
@@ -34,6 +36,7 @@ $config['migration_version'] = 2;
 | Also, writing permission is required within the migrations path.
 |
 */
+// 自定义迁移文件的目录
 $config['migration_path'] = APPPATH . 'migrations/';
 
 

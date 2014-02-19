@@ -1,5 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+// 自动加载自定义类库的函数
 function __autoload($classname) {
 	if (strpos($classname, 'CI_') !== 0) {
 		$file = APPPATH . 'libraries/' . $classname . '.php';
@@ -232,6 +232,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
+// 加密密钥，可以自定义一个字符串
 $config['encryption_key'] = 'XOoVGrm8w9tfRuyq';
 
 /*

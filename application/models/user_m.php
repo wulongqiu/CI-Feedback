@@ -39,17 +39,20 @@ class User_m extends MY_Model {
 		),
 	);
 
+	// 构造函数，初始化
 	function __construct() {
 		parent::__construct();
 	}
 
+	// 用户登陆
 	public function login ()
 	{
+		// 验证数据
 		$user = $this->get_by(array(
 			'email' => $this->input->post('email'),
 			'password' => $this->hash($this->input->post('password')),
 		), TRUE);
-
+		// 验证成功，保存session
 		if (count($user)) {
 			$data = array(
 				'name' => $user->name,
@@ -61,6 +64,7 @@ class User_m extends MY_Model {
 		}
 	}
 
+	// 退出，销毁session
 	public function logout() {
 		$this->session->sess_destroy();
 	}
@@ -69,6 +73,7 @@ class User_m extends MY_Model {
 		return (bool) $this->session->userdata('loggedin');
 	}
 
+	// 添加新用户
 	public function get_new() {
 		$user = new stdClass();
 		$user->name = '';
@@ -77,7 +82,9 @@ class User_m extends MY_Model {
 		return $user;
 	}
 
+	// hash加密函数
 	public function hash($string) {
+		// 采用sha512加密方式，加密密码和密钥字符串
 		return hash('sha512', $string . config_item('encryption_key'));
 	}
 
